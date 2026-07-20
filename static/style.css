@@ -1,0 +1,144 @@
+/* איפוס הגדרות בסיסיות והגדרת הפונט */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* עיצוב הרקע של כל הדף */
+body {
+    background-color: #0f172a; /* כחול כהה מודרני */
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    direction: rtl;
+}
+
+/* קופסת המשחק המרכזית */
+.game-container {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: -0.5px;
+}
+
+/* סרגל הבקרה */
+.controls {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+
+select, button {
+    background-color: #334155;
+    color: #ffffff;
+    border: 2px solid #475569;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+select:hover, button:hover {
+    border-color: #38bdf8;
+    background-color: #475569;
+}
+
+button {
+    background-color: #0284c7;
+    border-color: #0284c7;
+}
+
+button:hover {
+    background-color: #0369a1;
+}
+
+/* --- גריד הלוח --- */
+.board {
+    display: grid;
+    gap: 4px; /* רווח נקי בין המשבצות */
+    background-color: #0f172a;
+    padding: 8px;
+    border-radius: 12px;
+    border: 2px solid #334155;
+    user-select: none; /* מניעת סימון טקסט בטעות */
+}
+
+/* משבצת בלוח */
+.cell {
+    width: 38px;
+    height: 38px;
+    background-color: #334155;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.15s;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cell:hover {
+    background-color: #475569;
+    transform: scale(1.04);
+}
+
+/* משבצת שנחשפה */
+.cell.revealed {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    cursor: default;
+    box-shadow: none;
+}
+
+.cell.revealed:hover {
+    transform: none;
+}
+
+/* משבצת מוקש שהתפוצצה */
+.cell.mine {
+    background-color: #ef4444 !important;
+}
+
+/* צבעים שונים למספרים בלוח (לפי כמות מוקשים קרובים) */
+.val-1 { color: #60a5fa; } /* כחול */
+.val-2 { color: #4ade80; } /* ירוק */
+.val-3 { color: #f87171; } /* אדום */
+.val-4 { color: #c084fc; } /* סגול */
+.val-5 { color: #fbbf24; } /* צהוב */
+.val-6 { color: #2dd4bf; } /* טורקיז */
+
+/* הודעות ניצחון והפסד */
+.status-message {
+    font-size: 1.3rem;
+    font-weight: 800;
+    min-height: 32px;
+}
+
+.status-message.win {
+    color: #4ade80;
+}
+
+.status-message.lose {
+    color: #f87171;
+}

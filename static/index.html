@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שולה המוקשים - Full Stack</title>
+
+    <!-- קישור לקובץ העיצוב שלנו -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- פונט מודרני מבית Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- קופסת המשחק הראשית (Container) -->
+    <div class="game-container">
+
+        <!-- כותרת ראשית -->
+        <header>
+            <h1>שולה המוקשים 💣</h1>
+        </header>
+
+        <!-- סרגל בקרת המשחק: בחירת רמת קושי וכפתור התחלה -->
+        <div class="controls">
+            <select id="difficulty-select">
+                <option value="easy">קל (9x9, 10 מוקשים)</option>
+                <option value="medium">בינוני (16x16, 40 מוקשים)</option>
+                <option value="hard">קשה (16x30, 99 מוקשים)</option>
+            </select>
+            <button id="new-game-btn" onclick="startNewGame()">משחק חדש 🔄</button>
+        </div>
+
+        <!-- לוח המשחק - הגריד שיכיל את כל המשבצות -->
+        <div id="board" class="board"></div>
+
+        <!-- אזור הודעות סיום (ניצחון / הפסד) -->
+        <div id="status-message" class="status-message"></div>
+
+    </div>
+
+    <!-- קישור לקובץ ה-JavaScript שנכתוב בשלב הבא -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
