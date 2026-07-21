@@ -152,6 +152,7 @@ function renderBoard(gameState) {
             statusElement.innerText = '💥 בום! פגעת במוקש. נסה שוב!';
             statusElement.classList.add('lose');
         }
+    }
     // עדכון מונה המוקשים במסך (סך המוקשים פחות כמות הדגלים)
     if (gameState.total_mines !== undefined) {
         const remainingMines = gameState.total_mines - flagCount;
@@ -160,5 +161,4 @@ function renderBoard(gameState) {
 
     // שומרים את הלוח הנוכחי כדי שנדע מה השתנה בפעם הבאה
     previousBoard = gameState.board;
-}
 }
