@@ -5,6 +5,11 @@ let lastClickedCol = -1;
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchGameState();
+
+    // ברגע שמשנים רמה בתפריט הנגלל, התחל משחק חדש אוטומטית
+    document.getElementById('difficulty-select').addEventListener('change', () => {
+        startNewGame();
+    });
 });
 
 
