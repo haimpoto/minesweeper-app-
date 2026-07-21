@@ -15,17 +15,27 @@ class Minesweeper:
 
         self.game_over = False
         self.won = False
+        self.first_click = True
 
-        self._place_mines()
-        self._calculate_neighbors()
+    def _place_mines(self, safe_r, safe_c):
+        """פיזור אקראי של המוקשים בלוח, תוך החרגת אזור הלחיצה הראשונה"""
+        safe_zone = set()
+        for dr in [-1, 0, 1]:
+            for dc in [-1, 0, 1]:
+                nr, nc = safe_r + dr, safe_c + dc
+                if 0 <= nr < self.rows and 0 <= nc < self.cols:
+                    safe_zone.add((nr, nc))
 
-    def _place_mines(self):
-        """פיזור אקראי של המוקשים בלוח"""
-        positions = [(r, c) for r in range(self.rows) for c in range(self.cols)]
-        mine_positions = random.sample(positions, self.mines)
+        available_positions = [
+            (r, c) for r in range(self.rows) for c in range(self.cols)
+            if (r, c) not in safe_zone
+        ]
+
+        num_mines = min(self.mines, len(available_positions))
+        mine_positions = random.sample(available_positions, num_mines)
 
         for r, c in mine_positions:
-            self.grid[r][c] = -1
+            self.grid[r][c] = -1 -1
 
     def _calculate_neighbors(self):
         """חישוב כמה מוקשים יש מסביב לכל משבצת שלא מכילה מוקש"""
@@ -49,6 +59,13 @@ class Minesweeper:
         """לחיצה על משבצת לחשיפתה"""
         if self.game_over or self.visible_board[r][c] != 'hidden':
             return
+
+        # אם זו הלחיצה הראשונה, עכשיו מפזרים את המוקשים ומחשבים שכנים
+        if getattr(self, 'first_click', False):
+            self._place_mines(safe_r=r, safe_c=c)
+            self._calculate_neighbors()
+            self.first_click = False
+        
 
         # אם פגענו במוקש - המשחק נגמר
         if self.grid[r][c] == -1:
