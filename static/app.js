@@ -89,6 +89,7 @@ function renderBoard(gameState) {
     const board = gameState.board;
     const rows = board.length;
     const cols = board[0].length;
+    let flagCount = 0; // מוסיפים משתנה לאיסוף כמות הדגלים בלוח
 
     // הגדרת מספר העמודות ב-CSS Grid באופן דינמי
     boardElement.style.gridTemplateColumns = `repeat(${cols}, 38px)`;
@@ -103,6 +104,7 @@ function renderBoard(gameState) {
             // 1. משבצת מסומנת בדגל
             if (cellData.status === 'flagged') {
                 cellDiv.innerText = '🚩';
+                flagCount++;
             }
             // 2. משבצת שנחשפה
             else if (cellData.status === 'revealed') {
@@ -145,7 +147,13 @@ function renderBoard(gameState) {
             statusElement.innerText = '💥 בום! פגעת במוקש. נסה שוב!';
             statusElement.classList.add('lose');
         }
+    // עדכון מונה המוקשים במסך (סך המוקשים פחות כמות הדגלים)
+    if (gameState.total_mines !== undefined) {
+        const remainingMines = gameState.total_mines - flagCount;
+        document.getElementById('mines-count').innerText = remainingMines;
     }
+
     // שומרים את הלוח הנוכחי כדי שנדע מה השתנה בפעם הבאה
     previousBoard = gameState.board;
+}
 }

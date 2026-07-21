@@ -142,5 +142,6 @@ class Minesweeper:
         return {
             "board": board_data,
             "game_over": self.game_over,
-            "won": self.won
+            "won": self.won,
+            "total_mines": self.mines
         }
