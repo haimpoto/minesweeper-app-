@@ -177,3 +177,14 @@ button:hover {
     min-width: 80px;
     justify-content: center;
 }
+
+/* --- עיצוב זכויות יוצרים --- */
+.copyright {
+    position: absolute; /* ממקם את השורה ביחס לדף כולו */
+    bottom: 15px; /* מרחק של 15 פיקסלים מתחתית המסך */
+    color: #64748b; /* צבע אפור כהה שמשתלב עם הרקע */
+    font-size: 0.85rem; /* גודל פונט מעט קטן יותר */
+    opacity: 0.6; /* הגדרת שקיפות כדי שהטקסט ייראה חלש */
+    font-weight: 400;
+    user-select: none; /* מונע סימון של הטקסט עם העכבר */
+}
