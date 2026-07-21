@@ -35,7 +35,7 @@ class Minesweeper:
         mine_positions = random.sample(available_positions, num_mines)
 
         for r, c in mine_positions:
-            self.grid[r][c] = -1 -1
+            self.grid[r][c] = -1
 
     def _calculate_neighbors(self):
         """חישוב כמה מוקשים יש מסביב לכל משבצת שלא מכילה מוקש"""
@@ -65,7 +65,7 @@ class Minesweeper:
             self._place_mines(safe_r=r, safe_c=c)
             self._calculate_neighbors()
             self.first_click = False
-        
+
 
         # אם פגענו במוקש - המשחק נגמר
         if self.grid[r][c] == -1:

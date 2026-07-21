@@ -1,7 +1,12 @@
 // ברגע שהדף מסיים להיטען - מתחילים משחק חדש
+let previousBoard = null;
+let lastClickedRow = -1;
+let lastClickedCol = -1;
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchGameState();
 });
+
 
 // הבאת מצב המשחק מהשרת ב-Python (קריאת GET)
 async function fetchGameState() {
@@ -40,6 +45,8 @@ async function startNewGame() {
 
 // לחיצה על משבצת (קליק שמאלי - חשיפה)
 async function handleCellClick(row, col) {
+    lastClickedRow = row; // שומרים את השורה שלחצנו עליה
+    lastClickedCol = col; // שומרים את העמודה שלחצנו עליה
     try {
         const response = await fetch('/api/reveal', {
             method: 'POST',
@@ -101,6 +108,17 @@ function renderBoard(gameState) {
             else if (cellData.status === 'revealed') {
                 cellDiv.classList.add('revealed');
 
+                const isNewlyRevealed = previousBoard && previousBoard[r][c].status !== 'revealed';
+
+                if (isNewlyRevealed && lastClickedRow !== -1 && lastClickedCol !== -1) {
+                    // חישוב מרחק מהמשבצת המקורית שלחצנו עליה
+                    const distance = Math.max(Math.abs(r - lastClickedRow), Math.abs(c - lastClickedCol));
+
+                    // הוספת השהייה דינמית: כל צעד במרחק יוסיף 0.04 שניות עיכוב
+                    cellDiv.style.animationDelay = `${distance * 0.04}s`;
+                    cellDiv.classList.add('animate-reveal');
+                }
+
                 if (cellData.value === -1) {
                     cellDiv.innerText = '💣';
                     cellDiv.classList.add('mine');
@@ -128,4 +146,6 @@ function renderBoard(gameState) {
             statusElement.classList.add('lose');
         }
     }
+    // שומרים את הלוח הנוכחי כדי שנדע מה השתנה בפעם הבאה
+    previousBoard = gameState.board;
 }

@@ -142,3 +142,22 @@ button:hover {
 .status-message.lose {
     color: #f87171;
 }
+
+/* אנימציית פתיחה הדרגתית */
+@keyframes popIn {
+    0% {
+        transform: scale(0.3);
+        background-color: #334155;
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #1e293b;
+        opacity: 1;
+    }
+}
+
+.animate-reveal {
+    /* both גורם למשבצת להישאר מוסתרת (0%) עד שההשהייה שלה מסתיימת */
+    animation: popIn 0.3s ease-out both;
+}
