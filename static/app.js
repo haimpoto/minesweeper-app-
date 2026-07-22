@@ -143,11 +143,20 @@ function renderBoard(gameState) {
         }
     }
 
-    // הודעות סיום משחק
+   // הודעות סיום משחק
     if (gameState.game_over) {
         if (gameState.won) {
             statusElement.innerText = '🏆 אלוף! ניצחת את המשחק!';
             statusElement.classList.add('win');
+
+            // 🎊 הפעלת אפקט הקונפטי 🎊
+            confetti({
+                particleCount: 150, // כמות החלקיקים
+                spread: 80,         // זווית הפיזור
+                origin: { y: 0.6 }, // מאיזה גובה במסך זה יקפוץ (0.6 זה קצת מתחת לאמצע)
+                colors: ['#38bdf8', '#4ade80', '#f87171', '#fbbf24'] // צבעים שמתאימים לעיצוב שלך
+            });
+
         } else {
             statusElement.innerText = '💥 בום! פגעת במוקש. נסה שוב!';
             statusElement.classList.add('lose');
