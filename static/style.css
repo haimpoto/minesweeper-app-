@@ -147,12 +147,10 @@ button:hover {
 @keyframes popIn {
     0% {
         transform: scale(0.3);
-        background-color: #334155;
         opacity: 0;
     }
     100% {
         transform: scale(1);
-        background-color: #1e293b;
         opacity: 1;
     }
 }
