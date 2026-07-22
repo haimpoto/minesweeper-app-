@@ -187,4 +187,54 @@ button:hover {
     font-weight: 400;
     user-select: none; /* מונע סימון של הטקסט עם העכבר */
 }
+
+/* =========================================
+   מצב בהיר (Light Mode)
+========================================= */
+body.light-mode {
+    background-color: #f1f5f9; /* אפור בהיר מאוד */
+    color: #0f172a; /* טקסט כהה */
+}
+
+/* קופסת המשחק במצב בהיר */
+body.light-mode .game-container {
+    background-color: #ffffff; /* רקע לבן נקי */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* צל עדין יותר */
+}
+
+/* כפתורים, תפריט גלילה ומונה במצב בהיר */
+body.light-mode select,
+body.light-mode .mines-counter,
+body.light-mode #theme-toggle {
+    background-color: #f8fafc;
+    color: #0f172a;
+    border-color: #cbd5e1;
+}
+
+body.light-mode select:hover,
+body.light-mode #theme-toggle:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+/* לוח המשחק והמשבצות במצב בהיר */
+body.light-mode .board {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+}
+
+/* משבצת סגורה */
+body.light-mode .cell {
+    background-color: #cbd5e1;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+body.light-mode .cell:hover {
+    background-color: #94a3b8;
+}
+
+/* משבצת שנחשפה */
+body.light-mode .cell.revealed {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
 }

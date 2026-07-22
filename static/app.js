@@ -162,3 +162,18 @@ function renderBoard(gameState) {
     // שומרים את הלוח הנוכחי כדי שנדע מה השתנה בפעם הבאה
     previousBoard = gameState.board;
 }
+// --- החלפת מצב תצוגה (כהה/בהיר) ---
+function toggleTheme() {
+    const body = document.body;
+    const themeBtn = document.getElementById('theme-toggle');
+
+    // החלפת המחלקה light-mode על ה-body
+    body.classList.toggle('light-mode');
+
+    // שינוי הטקסט והאייקון של הכפתור לפי המצב
+    if (body.classList.contains('light-mode')) {
+        themeBtn.innerText = '🌙 מצב כהה';
+    } else {
+        themeBtn.innerText = '🌞 מצב בהיר';
+    }
+}
